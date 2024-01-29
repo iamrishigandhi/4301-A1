@@ -15,11 +15,11 @@ def set_blue(input_filename, output_filename):
     # Save the modified image
     cv2.imwrite(output_filename, image)
 
-    print(f"Blue channel set successfully. Output saved to {output_filename}")
+    print(f"Blue set successfully. Output saved to {output_filename}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python set_blue.py [input filename].jpg")
+        print("How to use: python set_blue.py [input filename].jpg")
     else:
         input_filename = sys.argv[1]
         output_filename = f"{input_filename.split('.')[0]}_RED.jpg"
