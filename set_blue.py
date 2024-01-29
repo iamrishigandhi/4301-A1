@@ -1,28 +1,26 @@
-import sys
 import cv2
+import sys
 
-def set_blue_to_zero(input_filename):
-    # Read the input image
-    img = cv2.imread(input_filename)
+def set_blue(input_filename, output_filename):
+    # Read the image
+    image = cv2.imread(input_filename)
 
-    if img is None:
-        print("Error: Could not read the file. Make sure the file exists.")
+    if image is None:
+        print(f"Error: Unable to read image from {input_filename}")
         return
 
-    # Set the blue channel to 0 for each pixel
-    img[:, :, 0] = 0  # 0 corresponds to the blue channel in OpenCV's BGR format
-
-    # Get the output filename
-    output_filename = input_filename.replace('.jpg', '_RED.jpg')
+    # Set the red channel to 0
+    image[:, :, 2] = 0  # Red channel index is 2 (0-based index)
 
     # Save the modified image
-    cv2.imwrite(output_filename, img)
+    cv2.imwrite(output_filename, image)
 
-    print(f"Image saved as {output_filename}")
+    print(f"Blue channel set successfully. Output saved to {output_filename}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python set_blue.py [input filename].jpg")
     else:
         input_filename = sys.argv[1]
-        set_blue_to_zero(input_filename)
+        output_filename = f"{input_filename.split('.')[0]}_RED.jpg"
+        set_blue(input_filename, output_filename)
